@@ -77,6 +77,9 @@ const setup = (numPairs) => {
       if($(this).hasClass("powerUp")) {
         alert("You found the power up! All cards will be revealed for 2 seconds.");
         revealCards();
+        $(this).removeClass("powerUp");
+        firstCard = undefined;
+        secondCard = undefined;
         return;  
       }
 
@@ -149,7 +152,6 @@ const revealCards = () => {
     setTimeout(() => {
         $(".card").not(".matched").removeClass("flip");
     }, 2000);
-    $(".card").find("powerUp").removeClass("powerUp");
 }
 
 const startGame = () => {
@@ -184,6 +186,7 @@ const resetGame = () => {
     $("#matchesMade").text(0);
     $("#matchesLeft").text(0);
     $("#timeElapsed").text(0);
+    $("#gameMessage").text("");
 }
 
 $(document).ready(() => {
