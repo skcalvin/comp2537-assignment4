@@ -15,10 +15,25 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <div class="difficulty">
+    <!-- <div class="difficulty">
         <button id="easy">Easy</button>
         <button id="medium">Medium</button>
         <button id="hard">Hard</button>
+    </div> -->
+    <div id="difficulty" class="btn-group btn-group-toggle m-3" data-toggle="buttons">
+        <label class="btn btn-primary active">
+          <input type="radio" value="easy" name="options" id="option1" autocomplete="off" checked=""> Easy
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" value="medium" name="options" id="option2" autocomplete="off"> Medium
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" value="hard" name="options" id="option3" autocomplete="off"> Hard
+        </label>
+    </div>
+    <div class="gameControls">
+        <button id="startGame">Start Game</button>
+        <button id="resetGame">Reset Game</button>
     </div>
     <div id="gameStats">
         <p>Clicks: <span id="clickCount">0</span></p>
@@ -31,7 +46,7 @@
 
     </div>
     <div class="gameMessage" id="gameMessage">
-        
+
     </div>    
 </body>
 

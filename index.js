@@ -133,8 +133,36 @@ const setup = (numPairs) => {
     });
 };
 
+const startGame = () => {
+    const selectedDifficulty = $('input[name="options"]:checked').val();
+    let numPairs;
+    switch (selectedDifficulty) {
+        case 'easy':
+            numPairs = 3; 
+            break;
+        case 'medium':
+            numPairs = 6; 
+            break;
+        case 'hard':
+            numPairs = 9; 
+            break;
+        default:
+            numPairs = 3; 
+    }
+    setupGameGrid(numPairs);
+}
+
+const resetGame = () => {
+    if (window.timer) clearInterval(window.timer);
+    $("#gameGrid").empty();
+    $("#clickCount").text(0);
+    $("#totalMatches").text(0);
+    $("#matchesMade").text(0);
+    $("#matchesLeft").text(0);
+    $("#timeElapsed").text(0);
+}
+
 $(document).ready(() => {
-    $("#easy").on("click", () => setupGameGrid(3));
-    $("#medium").on("click", () => setupGameGrid(6));
-    $("#hard").on("click", () => setupGameGrid(9));
+    $("#startGame").on("click", startGame);
+    $("#resetGame").on("click", resetGame);
 });
