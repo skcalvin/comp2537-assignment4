@@ -1,4 +1,5 @@
-const setupGameGrid = async (numPairs) => {
+const setupGameGrid = async (numPairs, ball) => {
+  console.log(ball);  
   console.log("Setting up game grid");
   $("#gameMessage").text("");
   $("#gameGrid").empty();
@@ -25,7 +26,7 @@ const setupGameGrid = async (numPairs) => {
                     <div class="card_front">
                         <img id="pokemon${index}" src="${sprite}" class="front_face" alt="Pokemon">
                     </div>
-                    <div class="card_back"></div>
+                    <div class="card_back ${ball}"></div>
                 </div>
             </div>
         `);
@@ -136,20 +137,25 @@ const setup = (numPairs) => {
 const startGame = () => {
     const selectedDifficulty = $('input[name="options"]:checked').val();
     let numPairs;
+    let ball;
     switch (selectedDifficulty) {
         case 'easy':
-            numPairs = 3; 
+            numPairs = 3;
+            ball = "pokeball"; 
             break;
         case 'medium':
             numPairs = 6; 
+            ball = "greatball";
             break;
         case 'hard':
             numPairs = 9; 
+            ball = "ultraball";
             break;
         default:
             numPairs = 3; 
+            ball = "pokeball";
     }
-    setupGameGrid(numPairs);
+    setupGameGrid(numPairs, ball);
 }
 
 const resetGame = () => {

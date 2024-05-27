@@ -30,6 +30,12 @@
 .card_front {
     transform: rotateY(180deg);
 }
-.card_back {
+.pokeball {
     background: url('/images/back.webp') no-repeat center center/cover;
+}
+.greatball {
+    background: url('/images/greatball.webp') no-repeat center center/cover;
+}
+.ultraball {
+    background: url('/images/ultraball.webp') no-repeat center center/cover;
 }
