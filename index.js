@@ -19,9 +19,12 @@ const setupGameGrid = async (numPairs, ball) => {
   // console.log(sprites);
   sprites.sort(() => 0.5 - Math.random()); // Shuffle sprites
 
+  const powerUpIndex = Math.floor(Math.random() * sprites.length);
+
   sprites.forEach((sprite, index) => {
+    const powerUp = index === powerUpIndex ? "powerUp" : "";
     const card = $(`
-            <div class="card">
+            <div class="card ${powerUp}">
                 <div class="card_inner">
                     <div class="card_front">
                         <img id="pokemon${index}" src="${sprite}" class="front_face" alt="Pokemon">
@@ -70,6 +73,13 @@ const setup = (numPairs) => {
       ) {
         return;
       }
+
+      if($(this).hasClass("powerUp")) {
+        alert("You found the power up! All cards will be revealed for 2 seconds.");
+        revealCards();
+        return;  
+      }
+
       // console.log(this);
       $(this).toggleClass("flip");
       numOfClicks++;
@@ -133,6 +143,14 @@ const setup = (numPairs) => {
       }
     });
 };
+
+const revealCards = () => {
+    $(".card").not(".matched").addClass("flip");
+    setTimeout(() => {
+        $(".card").not(".matched").removeClass("flip");
+    }, 2000);
+    $(".card").find("powerUp").removeClass("powerUp");
+}
 
 const startGame = () => {
     const selectedDifficulty = $('input[name="options"]:checked').val();
